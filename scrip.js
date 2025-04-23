@@ -1,47 +1,37 @@
-let partyData = {
-    date: '',
-    desc: '',
-    inviteMsg: '',
-    guests: []
-  };
-  
-  function setParty() {
-    const date = document.getElementById('party-date').value;
-    const desc = document.getElementById('party-desc').value.trim();
-    const msg = document.getElementById('invite-msg').value.trim();
-  
-    if (!date || !desc || !msg) {
-      alert("Please fill out all the fields!");
-      return;
-    }
-  
-    partyData.date = date;
-    partyData.desc = desc;
-    partyData.inviteMsg = msg;
-  
-    document.getElementById('info-date').textContent = date;
-    document.getElementById('info-desc').textContent = desc;
-    document.getElementById('info-msg').textContent = msg;
-    document.getElementById('party-info').classList.remove('hidden');
+let guests = [];
+
+function saveParty() {
+  const date = document.getElementById("partyDate").value;
+  const desc = document.getElementById("partyDescription").value;
+  const message = document.getElementById("inviteMessage").value;
+
+  const fullInvite = `🎈 You're invited! 🎈\n\n📅 Date: ${date}\n📋 Description: ${desc}\n\n💌 Message: ${message}`;
+  document.getElementById("showInvite").textContent = fullInvite;
+}
+
+function addGuest() {
+  const name = document.getElementById("guestName").value.trim();
+  const surname = document.getElementById("guestSurname").value.trim();
+
+  if (!name || !surname) {
+    alert("Please fill in both first and last names.");
+    return;
   }
-  
-  function registerGuest() {
-    const first = document.getElementById('first-name').value.trim();
-    const last = document.getElementById('last-name').value.trim();
-  
-    if (!first || !last) {
-      alert("Please enter your full name.");
-      return;
-    }
-  
-    const fullName = `${first} ${last}`;
-    partyData.guests.push(fullName);
-  
-    const li = document.createElement('li');
-    li.textContent = fullName;
-    document.getElementById('guest-list').appendChild(li);
-  
-    document.getElementById('first-name').value = '';
-    document.getElementById('last-name').value = '';
-  }
-  
+
+  const fullName = `${name} ${surname}`;
+  guests.push(fullName);
+
+  renderGuestList();
+  document.getElementById("guestName").value = '';
+  document.getElementById("guestSurname").value = '';
+}
+
+function renderGuestList() {
+  const list = document.getElementById("guestList");
+  list.innerHTML = "";
+  guests.forEach(guest => {
+    const li = document.createElement("li");
+    li.textContent = guest;
+    list.appendChild(li);
+  });
+}
