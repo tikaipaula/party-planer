@@ -3,42 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎉 PartyPlanner</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <title>PartyPlanner 🎉</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
     <h1>🎉 PartyPlanner</h1>
 
-    <section class="card">
+    <section class="setup">
       <h2>Set Up Your Party</h2>
-      <input type="date" id="party-date" />
-      <input type="text" id="party-desc" placeholder="Party Description" />
-      <textarea id="invite-msg" placeholder="Write your invite message here..."></textarea>
-      <button onclick="setParty()">Save Party</button>
+      <input type="date" id="partyDate" />
+      <textarea id="partyDescription" placeholder="Enter a short party description..."></textarea>
+      <textarea id="inviteMessage" placeholder="Write your custom invite message..."></textarea>
+      <button onclick="saveParty()">Save Party Details</button>
     </section>
 
-    <section id="party-info" class="card hidden">
-      <h2>🎊 Your Party Details</h2>
-      <p><strong>Date:</strong> <span id="info-date"></span></p>
-      <p><strong>Description:</strong> <span id="info-desc"></span></p>
-      <blockquote id="info-msg"></blockquote>
+    <section class="invite">
+      <h2>Invite Message</h2>
+      <p id="showInvite">No message yet.</p>
     </section>
 
-    <section class="card">
-      <h2>Join the Party</h2>
-      <input type="text" id="first-name" placeholder="First Name" />
-      <input type="text" id="last-name" placeholder="Last Name" />
-      <button onclick="registerGuest()">Join</button>
-    </section>
+    <section class="rsvp">
+      <h2>RSVP</h2>
+      <input type="text" id="guestName" placeholder="First Name" />
+      <input type="text" id="guestSurname" placeholder="Last Name" />
+      <button onclick="addGuest()">Join Party</button>
 
-    <section class="card">
-      <h2>🎈 Guest List</h2>
-      <ul id="guest-list"></ul>
+      <div class="guest-list">
+        <h3>Guest List</h3>
+        <ul id="guestList"></ul>
+      </div>
     </section>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
